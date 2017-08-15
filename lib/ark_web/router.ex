@@ -17,6 +17,8 @@ defmodule ArkWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/applications", ApplicationController
+    resources "/deploys", DeployController
   end
 
   # Other scopes may use custom stacks.
