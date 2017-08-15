@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  db:
+    image: "postgres:9.4"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ark_dev
+    volumes:
+      - ./dbdata:/var/lib/postgres
+  web:
+    image: "thetonymaster/ark"
+    ports:
+      - "4000:4000"
+    links:
+      - "db:db"
+  test:
+    image: "thetonymaster/ark.build"
+    command: mix test
+    environment:
+      - MIX_ENV=test
+    volumes:
+      - .:/app
+    links:
+      - "db:db"

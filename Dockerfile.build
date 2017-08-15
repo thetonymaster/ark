@@ -1,0 +1,11 @@
+FROM elixir:1.5.1
+
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install npm --global
+
+RUN mix local.hex --force
+
+RUN mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+
+WORKDIR /app
