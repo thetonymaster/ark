@@ -15,5 +15,5 @@ config :ark, Ark.Repo,
   username: "postgres",
   password: "postgres",
   database: "ark_test",
-  hostname: "localhost",
+  hostname: "db",
   pool: Ecto.Adapters.SQL.Sandbox

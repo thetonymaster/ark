@@ -54,5 +54,5 @@ config :ark, Ark.Repo,
   username: "postgres",
   password: "postgres",
   database: "ark_dev",
-  hostname: "localhost",
+  hostname: "db",
   pool_size: 10
