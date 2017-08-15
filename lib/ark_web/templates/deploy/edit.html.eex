@@ -1,0 +1,5 @@
+<h2>Edit Deploy</h2>
+
+<%= render "form.html", Map.put(assigns, :action, deploy_path(@conn, :update, @deploy)) %>
+
+<span><%= link "Back", to: deploy_path(@conn, :index) %></span>

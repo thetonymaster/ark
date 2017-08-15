@@ -1,0 +1,28 @@
+<h2>Listing Deploys</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Configuration</th>
+      <th>Terraform state</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for deploy <- @deploys do %>
+    <tr>
+      <td><%= deploy.configuration %></td>
+      <td><%= deploy.terraform_state %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: deploy_path(@conn, :show, deploy), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: deploy_path(@conn, :edit, deploy), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: deploy_path(@conn, :delete, deploy), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Deploy", to: deploy_path(@conn, :new) %></span>

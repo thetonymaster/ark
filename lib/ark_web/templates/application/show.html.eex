@@ -1,0 +1,28 @@
+<h2>Show Application</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @application.name %>
+  </li>
+
+  <li>
+    <strong>Logo:</strong>
+    <%= @application.logo %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @application.description %>
+  </li>
+
+  <li>
+    <strong>Template:</strong>
+    <%= @application.template %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: application_path(@conn, :edit, @application) %></span>
+<span><%= link "Back", to: application_path(@conn, :index) %></span>
