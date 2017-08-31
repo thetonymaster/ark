@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/thetonymaster/ark.png?label=ready&title=Ready)](https://waffle.io/thetonymaster/ark?utm_source=badge)
 # Ark
 
 To start your Phoenix server:
