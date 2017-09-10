@@ -13,16 +13,27 @@ services:
       - ./dbdata:/var/lib/postgres
   web:
     image: "thetonymaster/ark"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+       - node-modules:/app/assets/node_modules
     ports:
       - "4000:4000"
     links:
       - "db:db"
   test:
     image: "thetonymaster/ark.build"
+    build:
+      context: .
+      dockerfile: Dockerfile.build
     command: mix test
     environment:
       - MIX_ENV=test
     volumes:
       - .:/app
+      - node-modules:/app/assets/node_modules
     links:
       - "db:db"
+volumes:
+  node-modules:
