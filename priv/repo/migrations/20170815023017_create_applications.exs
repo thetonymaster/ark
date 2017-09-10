@@ -6,7 +6,7 @@ defmodule Ark.Repo.Migrations.CreateApplications do
       add :name, :string
       add :logo, :string
       add :description, :string
-      add :template, :string
+      add :files, :string
 
       timestamps()
     end

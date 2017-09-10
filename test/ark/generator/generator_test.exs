@@ -6,9 +6,9 @@ defmodule Ark.GeneratorTest do
   describe "applications" do
     alias Ark.Generator.Application
 
-    @valid_attrs %{description: "some description", logo: "some logo", name: "some name", template: "some template"}
-    @update_attrs %{description: "some updated description", logo: "some updated logo", name: "some updated name", template: "some updated template"}
-    @invalid_attrs %{description: nil, logo: nil, name: nil, template: nil}
+    @valid_attrs %{description: "some description", logo: "some logo", name: "some name", files: "some files"}
+    @update_attrs %{description: "some updated description", logo: "some updated logo", name: "some updated name", files: "some updated files"}
+    @invalid_attrs %{description: nil, logo: nil, name: nil, files: nil}
 
     def application_fixture(attrs \\ %{}) do
       {:ok, application} =
@@ -34,7 +34,7 @@ defmodule Ark.GeneratorTest do
       assert application.description == "some description"
       assert application.logo == "some logo"
       assert application.name == "some name"
-      assert application.template == "some template"
+      assert application.files == "some files"
     end
 
     test "create_application/1 with invalid data returns error changeset" do
@@ -48,7 +48,7 @@ defmodule Ark.GeneratorTest do
       assert application.description == "some updated description"
       assert application.logo == "some updated logo"
       assert application.name == "some updated name"
-      assert application.template == "some updated template"
+      assert application.files == "some updated files"
     end
 
     test "update_application/2 with invalid data returns error changeset" do
@@ -69,65 +69,65 @@ defmodule Ark.GeneratorTest do
     end
   end
 
-  describe "deploys" do
-    alias Ark.Generator.Deploy
+  describe "services" do
+    alias Ark.Generator.Service
 
     @valid_attrs %{configuration: %{}, terraform_state: %{}}
     @update_attrs %{configuration: %{}, terraform_state: %{}}
     @invalid_attrs %{configuration: nil, terraform_state: nil}
 
-    def deploy_fixture(attrs \\ %{}) do
-      {:ok, deploy} =
+    def service_fixture(attrs \\ %{}) do
+      {:ok, service} =
         attrs
         |> Enum.into(@valid_attrs)
-        |> Generator.create_deploy()
+        |> Generator.create_service()
 
-      deploy
+      service
     end
 
-    test "list_deploys/0 returns all deploys" do
-      deploy = deploy_fixture()
-      assert Generator.list_deploys() == [deploy]
+    test "list_services/0 returns all services" do
+      service = service_fixture()
+      assert Generator.list_services() == [service]
     end
 
-    test "get_deploy!/1 returns the deploy with given id" do
-      deploy = deploy_fixture()
-      assert Generator.get_deploy!(deploy.id) == deploy
+    test "get_service!/1 returns the service with given id" do
+      service = service_fixture()
+      assert Generator.get_service!(service.id) == service
     end
 
-    test "create_deploy/1 with valid data creates a deploy" do
-      assert {:ok, %Deploy{} = deploy} = Generator.create_deploy(@valid_attrs)
-      assert deploy.configuration == %{}
-      assert deploy.terraform_state == %{}
+    test "create_service/1 with valid data creates a service" do
+      assert {:ok, %Service{} = service} = Generator.create_service(@valid_attrs)
+      assert service.configuration == %{}
+      assert service.terraform_state == %{}
     end
 
-    test "create_deploy/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Generator.create_deploy(@invalid_attrs)
+    test "create_service/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Generator.create_service(@invalid_attrs)
     end
 
-    test "update_deploy/2 with valid data updates the deploy" do
-      deploy = deploy_fixture()
-      assert {:ok, deploy} = Generator.update_deploy(deploy, @update_attrs)
-      assert %Deploy{} = deploy
-      assert deploy.configuration == %{}
-      assert deploy.terraform_state == %{}
+    test "update_service/2 with valid data updates the service" do
+      service = service_fixture()
+      assert {:ok, service} = Generator.update_service(service, @update_attrs)
+      assert %Service{} = service
+      assert service.configuration == %{}
+      assert service.terraform_state == %{}
     end
 
-    test "update_deploy/2 with invalid data returns error changeset" do
-      deploy = deploy_fixture()
-      assert {:error, %Ecto.Changeset{}} = Generator.update_deploy(deploy, @invalid_attrs)
-      assert deploy == Generator.get_deploy!(deploy.id)
+    test "update_service/2 with invalid data returns error changeset" do
+      service = service_fixture()
+      assert {:error, %Ecto.Changeset{}} = Generator.update_service(service, @invalid_attrs)
+      assert service == Generator.get_service!(service.id)
     end
 
-    test "delete_deploy/1 deletes the deploy" do
-      deploy = deploy_fixture()
-      assert {:ok, %Deploy{}} = Generator.delete_deploy(deploy)
-      assert_raise Ecto.NoResultsError, fn -> Generator.get_deploy!(deploy.id) end
+    test "delete_service/1 deletes the service" do
+      service = service_fixture()
+      assert {:ok, %Service{}} = Generator.delete_service(service)
+      assert_raise Ecto.NoResultsError, fn -> Generator.get_service!(service.id) end
     end
 
-    test "change_deploy/1 returns a deploy changeset" do
-      deploy = deploy_fixture()
-      assert %Ecto.Changeset{} = Generator.change_deploy(deploy)
+    test "change_service/1 returns a service changeset" do
+      service = service_fixture()
+      assert %Ecto.Changeset{} = Generator.change_service(service)
     end
   end
 end

@@ -18,7 +18,8 @@ defmodule ArkWeb.Router do
 
     get "/", PageController, :index
     resources "/applications", ApplicationController
-    resources "/deploys", DeployController
+    resources "/services", ServiceController
+    resources "/credentials", CredentialController
   end
 
   # Other scopes may use custom stacks.

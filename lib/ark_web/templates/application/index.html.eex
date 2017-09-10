@@ -6,7 +6,7 @@
       <th>Name</th>
       <th>Logo</th>
       <th>Description</th>
-      <th>Template</th>
+      <th>Files</th>
 
       <th></th>
     </tr>
@@ -17,7 +17,7 @@
       <td><%= application.name %></td>
       <td><%= application.logo %></td>
       <td><%= application.description %></td>
-      <td><%= application.template %></td>
+      <td><%= application.files %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: application_path(@conn, :show, application), class: "btn btn-default btn-xs" %></span>

@@ -3,9 +3,9 @@ defmodule ArkWeb.ApplicationControllerTest do
 
   alias Ark.Generator
 
-  @create_attrs %{description: "some description", logo: "some logo", name: "some name", template: "some template"}
-  @update_attrs %{description: "some updated description", logo: "some updated logo", name: "some updated name", template: "some updated template"}
-  @invalid_attrs %{description: nil, logo: nil, name: nil, template: nil}
+  @create_attrs %{description: "some description", logo: "some logo", name: "some name", files: "some files"}
+  @update_attrs %{description: "some updated description", logo: "some updated logo", name: "some updated name", files: "some updated files"}
+  @invalid_attrs %{description: nil, logo: nil, name: nil, files: nil}
 
   def fixture(:application) do
     {:ok, application} = Generator.create_application(@create_attrs)

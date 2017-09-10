@@ -8,7 +8,7 @@ defmodule Ark.Generator.Application do
     field :description, :string
     field :logo, :string
     field :name, :string
-    field :template, :string
+    field :files, :string
 
     timestamps()
   end
@@ -16,7 +16,7 @@ defmodule Ark.Generator.Application do
   @doc false
   def changeset(%Application{} = application, attrs) do
     application
-    |> cast(attrs, [:name, :logo, :description, :template])
-    |> validate_required([:name, :logo, :description, :template])
+    |> cast(attrs, [:name, :logo, :description, :files])
+    |> validate_required([:name, :logo, :description, :files])
   end
 end

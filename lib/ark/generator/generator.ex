@@ -102,99 +102,99 @@ defmodule Ark.Generator do
     Application.changeset(application, %{})
   end
 
-  alias Ark.Generator.Deploy
+  alias Ark.Generator.Service
 
   @doc """
-  Returns the list of deploys.
+  Returns the list of services.
 
   ## Examples
 
-      iex> list_deploys()
-      [%Deploy{}, ...]
+      iex> list_services()
+      [%Service{}, ...]
 
   """
-  def list_deploys do
-    Repo.all(Deploy)
+  def list_services do
+    Repo.all(Service)
   end
 
   @doc """
-  Gets a single deploy.
+  Gets a single service.
 
-  Raises `Ecto.NoResultsError` if the Deploy does not exist.
+  Raises `Ecto.NoResultsError` if the Service does not exist.
 
   ## Examples
 
-      iex> get_deploy!(123)
-      %Deploy{}
+      iex> get_service!(123)
+      %Service{}
 
-      iex> get_deploy!(456)
+      iex> get_service!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_deploy!(id), do: Repo.get!(Deploy, id)
+  def get_service!(id), do: Repo.get!(Service, id)
 
   @doc """
-  Creates a deploy.
+  Creates a service.
 
   ## Examples
 
-      iex> create_deploy(%{field: value})
-      {:ok, %Deploy{}}
+      iex> create_service(%{field: value})
+      {:ok, %Service{}}
 
-      iex> create_deploy(%{field: bad_value})
+      iex> create_service(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_deploy(attrs \\ %{}) do
-    %Deploy{}
-    |> Deploy.changeset(attrs)
+  def create_service(attrs \\ %{}) do
+    %Service{}
+    |> Service.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a deploy.
+  Updates a service.
 
   ## Examples
 
-      iex> update_deploy(deploy, %{field: new_value})
-      {:ok, %Deploy{}}
+      iex> update_service(service, %{field: new_value})
+      {:ok, %Service{}}
 
-      iex> update_deploy(deploy, %{field: bad_value})
+      iex> update_service(service, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_deploy(%Deploy{} = deploy, attrs) do
-    deploy
-    |> Deploy.changeset(attrs)
+  def update_service(%Service{} = service, attrs) do
+    service
+    |> Service.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a Deploy.
+  Deletes a Service.
 
   ## Examples
 
-      iex> delete_deploy(deploy)
-      {:ok, %Deploy{}}
+      iex> delete_service(service)
+      {:ok, %Service{}}
 
-      iex> delete_deploy(deploy)
+      iex> delete_service(service)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_deploy(%Deploy{} = deploy) do
-    Repo.delete(deploy)
+  def delete_service(%Service{} = service) do
+    Repo.delete(service)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking deploy changes.
+  Returns an `%Ecto.Changeset{}` for tracking service changes.
 
   ## Examples
 
-      iex> change_deploy(deploy)
-      %Ecto.Changeset{source: %Deploy{}}
+      iex> change_service(service)
+      %Ecto.Changeset{source: %Service{}}
 
   """
-  def change_deploy(%Deploy{} = deploy) do
-    Deploy.changeset(deploy, %{})
+  def change_service(%Service{} = service) do
+    Service.changeset(service, %{})
   end
 end

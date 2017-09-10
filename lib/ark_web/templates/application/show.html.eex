@@ -18,8 +18,8 @@
   </li>
 
   <li>
-    <strong>Template:</strong>
-    <%= @application.template %>
+    <strong>Files:</strong>
+    <%= @application.files %>
   </li>
 
 </ul>
