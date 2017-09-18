@@ -20,7 +20,9 @@ defmodule ArkWeb.Router do
     resources "/applications", ApplicationController
     resources "/services", ServiceController
     resources "/credentials", CredentialController
+    resources "/users", UserController
   end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", ArkWeb do
