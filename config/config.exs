@@ -22,6 +22,17 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+
+# Config for Guardian
+config :guardian, Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "Ark",
+  ttl: { 30, :days},
+  verify_issuer: true,
+  secret_key: "ciPz5cCzM+H7WF1Z9EBN9SN9M0hJVqRlUzoCkB1cSUVhyxlnYzRuwonf53cOX/u4",
+  serializer: Ark.GuardianSerializer
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
