@@ -1,3 +1,3 @@
-defmodule Ark.SessionView do
+defmodule ArkWeb.SessionView do
   use ArkWeb, :view
 end

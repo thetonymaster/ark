@@ -29,7 +29,7 @@ defmodule ArkWeb.Router do
     resources "/services", ServiceController
     resources "/credentials", CredentialController
     resources "/users", UserController
-    resources"/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   scope "/", ArkWeb do

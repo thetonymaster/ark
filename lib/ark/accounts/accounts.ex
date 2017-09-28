@@ -51,7 +51,7 @@ defmodule Ark.Accounts do
   """
   def create_user(attrs \\ %{}) do
     %User{}
-    |> User.registration_changeset(attrs)
+    |> User.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -69,7 +69,7 @@ defmodule Ark.Accounts do
   """
   def update_user(%User{} = user, attrs) do
     user
-    |> User.registration_changeset(attrs)
+    |> User.changeset(attrs)
     |> Repo.update()
   end
 

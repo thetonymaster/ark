@@ -40,6 +40,7 @@ defmodule ArkWeb do
       import ArkWeb.Router.Helpers
       import ArkWeb.ErrorHelpers
       import ArkWeb.Gettext
+      import ArkWeb.ViewHelper
     end
   end
 

@@ -13,7 +13,7 @@ defmodule Ark.Accounts.User do
   end
 
   @doc false
-  def registration_changeset(%User{} = user, attrs) do
+  def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:email, :password_hash])
     |> validate_required([:email, :password_hash])
@@ -21,6 +21,15 @@ defmodule Ark.Accounts.User do
     |> put_password_hash()    
   end
 
+  def registration_changeset(%User{} = user, params) do
+  user
+  |> changeset(params)
+  |> cast(params, ~w(password), [])
+  |> validate_length(:password, min: 3)
+  |> put_password_hash()
+  end
+
+#DOUBTS IN THIS PART
 #def registration_changeset(model, params) do
 #  model
 #  |> changeset(params)

@@ -16,6 +16,7 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
+	     <%= render "sign_in_sign_out.html", conn: @conn %><br><br>
             <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
           </ul>
         </nav>
