@@ -30,11 +30,13 @@ defmodule ArkWeb.Router do
     resources "/credentials", CredentialController
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/todos", TodoController
   end
 
   scope "/", ArkWeb do
   pipe_through [:browser, :browser_auth]
   resources "/users", UserController, only: [:show, :index, :update]
+  resources "/todos", TodoController
   end
 
   # Other scopes may use custom stacks.
