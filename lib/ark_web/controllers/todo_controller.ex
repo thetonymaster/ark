@@ -1,6 +1,7 @@
 defmodule ArkWeb.TodoController do
   use ArkWeb, :controller
 
+  import Ecto
   alias Ark.Accounts
   alias Ark.Accounts.Todo
 
@@ -15,6 +16,10 @@ defmodule ArkWeb.TodoController do
   end
 
   def create(conn, %{"todo" => todo_params}) do
+    changeset = Guardian.Plug.current_resource(conn)
+#Doubts in this changes    |> Ecto.build_assoc(:todos)
+#Doubts in this changes    |> Ark.Accounts.changeset(todo_params)
+
     case Accounts.create_todo(todo_params) do
       {:ok, todo} ->
         conn
