@@ -8,7 +8,8 @@ defmodule Ark.Accounts.User do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
-    has_many :todos, ArkWeb.Todo
+#    has_many :user, Ark.Accounts.User
+    belongs_to :role, Ark.Accounts.Role
 
     timestamps()
   end
@@ -16,6 +17,7 @@ defmodule Ark.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
+#   |> Map.put(:role_id, 1)
     |> cast(attrs, [:email, :password_hash])
     |> validate_required([:email, :password_hash])
     |> validate_length(:password_hash, min: 6)
