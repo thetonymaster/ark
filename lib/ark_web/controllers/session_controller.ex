@@ -5,7 +5,8 @@ defmodule ArkWeb.SessionController do
 
 
   def new(conn, _) do
-    render conn, "new.html"
+   if Ark.Session.logged_in?(conn), do: redirect(conn,to: "/"), else: render(conn,"new.html")
+    #    render conn, "new.html"
   end
 
 def create(conn, %{"session" => %{"email" => user, 

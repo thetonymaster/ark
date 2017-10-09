@@ -1,8 +1,12 @@
 defmodule ArkWeb.UserController do
   use ArkWeb, :controller
-
+  
   alias Ark.Accounts
   alias Ark.Accounts.User
+
+  import Ark.RoleChecker
+
+  plug :authenticate, :admin when action in [:create, :update, :destroy]
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -57,4 +61,13 @@ defmodule ArkWeb.UserController do
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: user_path(conn, :index))
   end
+
+  defp authenticate(conn, :admin) do
+    if is_admin?(conn) do
+       conn
+    else
+    halt conn
+     end
+  end
+
 end

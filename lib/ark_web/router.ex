@@ -13,34 +13,43 @@ defmodule ArkWeb.Router do
 
   pipeline :browser_auth do
     plug Guardian.Plug.VerifySession
-    plug Guardian.Plug.EnsureAuthenticated, handler: Ark.Token
+    plug Guardian.Plug.VerifyHeader
+    #    plug Guardian.Plug.EnsureAuthenticated , handler: Ark.Token
     plug Guardian.Plug.LoadResource
   end
+
+   pipeline :ensure_authed_access do
+       plug Guardian.Plug.EnsureAuthenticated,handler: GuardianAuth.HttpErrorHandler
+   end  
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", ArkWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser,:browser_auth] # Use the default browser stack
 
-    get "/", PageController, :index
-    resources "/applications", ApplicationController
-    resources "/services", ServiceController
-    resources "/credentials", CredentialController
-    resources "/users", UserController
+    #    get "/", PageController, :index
+    #    resources "/applications", ApplicationController
+    #    resources "/services", ServiceController
+    #    resources "/credentials", CredentialController
+    #    resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
-    resources "/todos", TodoController
+    #resources "/todos", TodoController
+    #resources "/roles", RoleController
   end
 
   scope "/", ArkWeb do
-  pipe_through [:browser, :browser_auth]
+  pipe_through [:browser, :browser_auth,:ensure_authed_access]
+  get "/", PageController, :index
   resources "/users", UserController, only: [:show, :index, :update]
   resources "/todos", TodoController
+  resources "/applications", ApplicationController
+  resources "/services", ServicesController
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", ArkWeb do
   #   pipe_through :api
-  # end
+  #end
 end
