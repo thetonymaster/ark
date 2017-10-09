@@ -7,8 +7,6 @@ defmodule ArkWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Guardian.Plug.VerifySession
-    plug Guardian.Plug.LoadResource
   end
 
   pipeline :browser_auth do
@@ -19,7 +17,7 @@ defmodule ArkWeb.Router do
   end
 
    pipeline :ensure_authed_access do
-       plug Guardian.Plug.EnsureAuthenticated,handler: GuardianAuth.HttpErrorHandler
+       plug Guardian.Plug.EnsureAuthenticated,handler: Ark.HttpErrorHandler
    end  
 
   pipeline :api do
@@ -30,22 +28,20 @@ defmodule ArkWeb.Router do
     pipe_through [:browser,:browser_auth] # Use the default browser stack
 
     #    get "/", PageController, :index
-    #    resources "/applications", ApplicationController
-    #    resources "/services", ServiceController
-    #    resources "/credentials", CredentialController
-    #    resources "/users", UserController
+    resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
-    #resources "/todos", TodoController
-    #resources "/roles", RoleController
   end
 
   scope "/", ArkWeb do
   pipe_through [:browser, :browser_auth,:ensure_authed_access]
   get "/", PageController, :index
-  resources "/users", UserController, only: [:show, :index, :update]
-  resources "/todos", TodoController
-  resources "/applications", ApplicationController
-  resources "/services", ServicesController
+        resources "/applications", ApplicationController
+        resources "/services", ServiceController
+        resources "/credentials", CredentialController
+        resources "/users", UserController
+        resources "/sessions", SessionController, only: [:new, :create, :delete]
+        resources "/todos", TodoController
+        resources "/roles", RoleController
   end
 
   # Other scopes may use custom stacks.
