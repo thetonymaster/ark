@@ -35,6 +35,13 @@ defmodule ArkWeb.TodoController do
     render(conn, "show.html", todo: todo)
   end
 
+    #  def show(conn, %{"id" => id}) do
+    #    todo = System.cmd "ls", ["-lha"], into: IO.stream(:stdio, :line)
+    #    #todo = Accounts.get_todo!(id)
+    #    #    System.cmd "ls", ["-lha"], into: IO.stream(:stdio, :line)
+    #    render(conn, "show.html", todo: todo)
+    #  end
+
   def edit(conn, %{"id" => id}) do
     todo = Accounts.get_todo!(id)
     changeset = Accounts.change_todo(todo)

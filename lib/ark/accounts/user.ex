@@ -18,8 +18,8 @@ defmodule Ark.Accounts.User do
   def changeset(%User{} = user, attrs) do
     user
 #   |> Map.put(:role_id, 1)
-    |> cast(attrs, [:email, :password_hash])
-    |> validate_required([:email, :password_hash])
+    |> cast(attrs, [:email, :password_hash, :role_id])
+    |> validate_required([:email, :password_hash, :role_id])
     |> validate_length(:password_hash, min: 6)
     |> put_password_hash()    
   end

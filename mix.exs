@@ -44,6 +44,7 @@ defmodule Ark.Mixfile do
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
       {:guardian, "~> 0.14"}
+      #{:react_phoenix, "~> 0.3.0"}
     ]
   end
 
